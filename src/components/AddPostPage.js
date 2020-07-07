@@ -24,7 +24,7 @@ function AddPostForm(props) {
 }
 
 AddPostForm.propTypes = {
-  onPostCreation = PropTypes.func
+  onPostCreation: PropTypes.func
 };
 
 export default AddPostForm;

@@ -21,4 +21,9 @@ function PostForm(props) {
       </form>
     </React.Fragment>
   )
-} 
+}
+PostForm.propTypes = {
+  submitHandler: PropTypes.func,
+  buttonText: PropTypes.string
+}
+export default PostForm;

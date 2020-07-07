@@ -7,7 +7,33 @@ import rootReducer from './reducers/index';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
-const store = createStore(rootReducer);
+const preLoadPosts = {
+  showForm: false,
+  postList: {
+    1: {
+      title: "first",
+      id: 1,
+      image: "https://i.imgur.com/K1SQYrt.jpg",
+      showPostDetail: false,
+      postDetail: {}
+    },
+    2: {
+      title: "Most Awesome Second Post",
+      id: 2,
+      image: "https://i.imgur.com/MuEZYmB.png",
+      showPostDetail: false,
+      postDetail: {}
+    },
+    3: {
+      title: "TRIFECTA ACHEIVED",
+      id: 3,
+      image: "https://i.imgur.com/2bvab7y.jpeg",
+      showPostDetail: false,
+      postDetail: {}
+    }
+  },
+}
+const store = createStore(rootReducer, preLoadPosts);
 
 ReactDOM.render(
   <Provider store={store}>

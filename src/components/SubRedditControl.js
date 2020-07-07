@@ -1,11 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import AddPostPage from './AddPostPage';
 import EditPostPage from './EditPostPage';
 import PostList from './PostList';
+import { connect } from 'react-redux';
 
 function SubRedditControl(props) {
 
-  handleAddingNewPost = (newPost) => {
+  function handleAddingNewPost(newPost) {
     const { dispatch } = props;
     const { title, id, image, showPostDetail, postDetail } = newPost;
     const action = {
@@ -33,11 +35,24 @@ function SubRedditControl(props) {
   }
 
   return (
-
-
     <React.Fragment>
       {visibleState}
-
     </React.Fragment>
   )
 }
+SubRedditControl.propTypes = {
+  postList: PropTypes.object,
+  showForm: PropTypes.bool,
+  showEdit: PropTypes.bool
+}
+const mapStateToProps = state => {
+  return {
+    postList: state.postList,
+    showForm: state.showForm,
+    showEdit: state.showEdit
+  }
+}
+
+SubRedditControl = connect(mapStateToProps)(SubRedditControl)
+
+export default SubRedditControl;
