@@ -1,5 +1,5 @@
 import showFormReducer from './show-form-reducer';
-import postListReducer from './ticket-list-reducer';
+import postListReducer from './post-list-reducer';
 import { combineReducers } from 'redux';
 
 const rootReducer = combineReducers({
