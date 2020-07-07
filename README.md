@@ -1,3 +1,21 @@
+
+showForm: bool
+postList: object
+  -> post: object
+    -> postTitle: string
+    -> post id: string
+    -> post image: string
+    -> showPostDetail: bool
+    -> postDetail: object
+      -> description: string
+      -> date: datetime/string
+      -> replyList: object
+        -> reply: object
+          -> username: string
+          -> date: datetime/string
+          -> comment: string
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
