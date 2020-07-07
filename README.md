@@ -1,5 +1,6 @@
 
-showForm: bool
+showAddForm: bool
+showEditForm: bool
 postList: object
   -> post: object
     -> postTitle: string
