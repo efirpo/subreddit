@@ -13,6 +13,8 @@ function PostList(props) {
           image={post.image}
           showPostDetail={post.showPostDetail}
           postDetail={post.postDetail}
+          upVotes={post.upVotes}
+          downVotes={post.downVotes}
         />
       })}
     </React.Fragment>

@@ -15,21 +15,27 @@ const preLoadPosts = {
       id: 1,
       image: "https://i.imgur.com/K1SQYrt.jpg",
       showPostDetail: false,
-      postDetail: {}
+      postDetail: {},
+      upVotes: 19,
+      downVotes: 18
     },
     2: {
       title: "Most Awesome Second Post",
       id: 2,
       image: "https://i.imgur.com/MuEZYmB.png",
       showPostDetail: false,
-      postDetail: {}
+      postDetail: {},
+      upVotes: 24,
+      downVotes: 6
     },
     3: {
       title: "TRIFECTA ACHEIVED",
       id: 3,
       image: "https://i.imgur.com/2bvab7y.jpeg",
       showPostDetail: false,
-      postDetail: {}
+      postDetail: {},
+      upVotes: 265,
+      downVotes: 3
     }
   },
 }
