@@ -21,7 +21,9 @@ const preLoadPosts = {
         replyList: {}
       },
       upVotes: 19,
-      downVotes: 18
+      downVotes: 18,
+      showEdit: false,
+      showFullImg: false,
     },
     2: {
       title: "Most Awesome Second Post",
@@ -34,7 +36,9 @@ const preLoadPosts = {
         replyList: {}
       },
       upVotes: 24,
-      downVotes: 6
+      downVotes: 6,
+      showEdit: false,
+      showFullImg: false,
     },
     3: {
       title: "TRIFECTA ACHEIVED",
@@ -47,7 +51,9 @@ const preLoadPosts = {
         replyList: {}
       },
       upVotes: 265,
-      downVotes: 3
+      downVotes: 3,
+      showEdit: false,
+      showFullImg: false,
     }
   },
 }

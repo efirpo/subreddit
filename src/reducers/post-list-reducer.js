@@ -1,6 +1,6 @@
 export default (state = {}, action) => {
 
-  const { title, id, image, showPostDetail, postDetail, upVotes, downVotes, showEdit } = action;
+  const { title, id, image, showPostDetail, postDetail, upVotes, downVotes, showEdit, showFullImg } = action;
   switch (action.type) {
     case 'ADD_POST':
       return Object.assign({}, state, {
@@ -12,7 +12,8 @@ export default (state = {}, action) => {
           postDetail: postDetail,
           upVotes: upVotes,
           downVotes: downVotes,
-          showEdit: showEdit
+          showEdit: showEdit,
+          showFullImg: showFullImg
         }
       });
     case 'TOGGLE_DETAILS':
@@ -20,6 +21,21 @@ export default (state = {}, action) => {
         [id]: {
           ...state[id],
           showPostDetail: showPostDetail,
+        }
+      })
+    case 'VOTE_HANDLING':
+      return Object.assign({}, state, {
+        [id]: {
+          ...state[id],
+          upVotes: upVotes,
+          downVotes: downVotes,
+        }
+      })
+    case 'TOGGLE_IMG':
+      return Object.assign({}, state, {
+        [id]: {
+          ...state[id],
+          showFullImg: showFullImg
         }
       })
 

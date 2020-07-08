@@ -3,18 +3,32 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import PostDetail from './PostDetail';
 
+const fullPostStyles = {
+  backgroundColor: "#f39d" + props.bgColor
+}
+const postBodyStyles = {
+  display: "flex",
+  flexFlow: "row nowrap",
+  margin: "2vw"
+}
+
+const titleStyles = {
+  fontFamily: "Impact",
+  margin: "1vw"
+}
+
+const imgParentStyles = {
+  justifySelf: "start",
+  margin: "2vw"
+}
+
+
 function Post(props) {
-  console.log("props.postDetail when first loading: ")
-  console.log(props.postDetail)
   function handleVotingUp() {
     const { dispatch } = props;
     const action = {
-      type: 'ADD_POST',
-      title: props.title,
+      type: 'VOTE_HANDLING',
       id: props.id,
-      image: props.image,
-      showPostDetail: props.showPostDetail,
-      postDetail: props.postDetail,
       upVotes: props.upVotes + 1,
       downVotes: props.downVotes,
     }
@@ -24,16 +38,10 @@ function Post(props) {
   function handleVotingDown() {
     const { dispatch } = props;
     const action = {
-      type: 'ADD_POST',
-      title: props.title,
+      type: 'VOTE_HANDLING',
       id: props.id,
-      image: props.image,
-      showPostDetail: props.showPostDetail,
-      postDetail: props.postDetail,
       upVotes: props.upVotes,
       downVotes: props.downVotes + 1,
-      showEdit: props.showEdit
-
     }
     dispatch(action)
   }
@@ -49,21 +57,49 @@ function Post(props) {
     }
     dispatch(action)
   }
+  function onShowFullImgClick() {
+    console.log("DIV ON CLICK WORKS")
+
+    const { dispatch } = props;
+    const action = {
+      type: 'TOGGLE_IMG',
+      id: props.id,
+      showFullImg: !props.showFullImg
+    }
+    dispatch(action)
+  }
+
+  let image;
+  if (props.showFullImg) {
+    image = <img src={props.image} alt="post full image" width="600px" />
+  } else {
+    image = <img src={props.image} alt="post thumb image" width="100vw" />
+  }
   let postDetails;
   if (props.showPostDetail) {
-    postDetails = <PostDetail postDetail={props.postDetail} />
+    postDetails = <PostDetail postDetail={props.postDetail} onAddReply={props.onAddReply} />
   }
 
   const voteDifference = props.upVotes - props.downVotes
 
   return (
     <React.Fragment>
-      <h2 onClick={onShowDetailClick}>{props.title}</h2>
-      <h2 onClick={handleVotingUp}>&uarr;</h2><span>{voteDifference}</span> <h2 onClick={handleVotingDown}>&darr;</h2><br />
-      <img src={props.image} alt="post image" width="10%" />
-      {postDetails}
-      {/* <button onClick={handleEditClick}>Edit This Post</button> */}
-      <br />
+      <div style={fullPostStyles}>
+        <div style={titleStyles}>
+          <h2 onClick={onShowDetailClick}>{props.title}</h2>
+        </div>
+        <div style={postBodyStyles}>
+          <div>
+            <h2 onClick={handleVotingUp}>&uarr;</h2><span>{voteDifference}</span> <h2 onClick={handleVotingDown}>&darr;</h2><br />
+          </div>
+          <div onClick={onShowFullImgClick} style={imgParentStyles}>
+            {image}
+          </div>
+          {postDetails}
+        </div>
+        {/* <button onClick={handleEditClick}>Edit This Post</button> */}
+        <br />
+      </div>
     </React.Fragment>
   )
 }
@@ -78,7 +114,9 @@ Post.propTypes = {
   upVotes: PropTypes.number,
   downVotes: PropTypes.number,
   showEdit: PropTypes.bool,
-
+  showFullImg: PropTypes.bool,
+  onAddReply: PropTypes.func,
+  bgColor: PropTypes.func
 }
 
 Post = connect()(Post);
