@@ -9,14 +9,16 @@ function SubRedditControl(props) {
 
   function handleAddingNewPost(newPost) {
     const { dispatch } = props;
-    const { title, id, image, showPostDetail, postDetail } = newPost;
+    const { title, id, image, showPostDetail, postDetail, upVotes, downVotes } = newPost;
     const action = {
       type: 'ADD_POST',
       title: title,
       id: id,
       image: image,
       showPostDetail: showPostDetail,
-      postDetail: postDetail
+      postDetail: postDetail,
+      upVotes: upVotes,
+      downVotes: downVotes
     }
     dispatch(action);
     const action2 = {
@@ -25,13 +27,21 @@ function SubRedditControl(props) {
     dispatch(action2)
   }
 
+  function handleClickingAddToPost() {
+    const { dispatch } = props;
+    const action = {
+      type: 'TOGGLE_FORM'
+    }
+    dispatch(action)
+  }
+
   let visibleState;
   if (props.showForm) {
     visibleState = <AddPostPage onPostCreation={handleAddingNewPost} />
   } else if (props.showEdit) {
     visibleState = <EditPostPage post={props.selectedPost} />
   } else {
-    visibleState = <PostList postList={props.postList} />
+    visibleState = <PostList postList={props.postList} onAddPostClick={handleClickingAddToPost} />
   }
 
   return (
@@ -41,7 +51,7 @@ function SubRedditControl(props) {
   )
 }
 SubRedditControl.propTypes = {
-  postList: PropTypes.object,
+  postList: PropTypes.array,
   showForm: PropTypes.bool,
   showEdit: PropTypes.bool
 }
@@ -58,9 +68,8 @@ const mapStateToProps = state => {
     }
     return 0
 
-  })
-  console.table(orderedListArr)
-  // console.table(postListArr);
+  });
+
   return {
     postList: orderedListArr,
     showForm: state.showForm,

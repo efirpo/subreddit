@@ -7,7 +7,7 @@ function AddPostForm(props) {
 
   function handleNewPostSubmission(event) {
     event.preventDefault();
-    let rightNow = new Date()
+    let rightNow = new Date().toString()
 
     // Tue Jul 07 2020 14:38:07 GMT-0700 (Pacific Daylight Time)
     props.onPostCreation({

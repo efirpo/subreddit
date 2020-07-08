@@ -15,7 +15,11 @@ const preLoadPosts = {
       id: 1,
       image: "https://i.imgur.com/K1SQYrt.jpg",
       showPostDetail: false,
-      postDetail: {},
+      postDetail: {
+        description: "first",
+        date: "June 21st 2020, 13:04:07",
+        replyList: {}
+      },
       upVotes: 19,
       downVotes: 18
     },
@@ -24,7 +28,11 @@ const preLoadPosts = {
       id: 2,
       image: "https://i.imgur.com/MuEZYmB.png",
       showPostDetail: false,
-      postDetail: {},
+      postDetail: {
+        description: "Most Awesome Second Post",
+        date: "June 21st 2020, 13:04:07",
+        replyList: {}
+      },
       upVotes: 24,
       downVotes: 6
     },
@@ -33,7 +41,11 @@ const preLoadPosts = {
       id: 3,
       image: "https://i.imgur.com/2bvab7y.jpeg",
       showPostDetail: false,
-      postDetail: {},
+      postDetail: {
+        description: "TRIFECTA ACHIEVED",
+        date: "June 21st 2020, 13:04:07",
+        replyList: {}
+      },
       upVotes: 265,
       downVotes: 3
     }

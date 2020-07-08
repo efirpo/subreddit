@@ -6,6 +6,7 @@ function PostList(props) {
 
   return (
     <React.Fragment>
+      <button onClick={() => props.onAddPostClick()}>Add Post</button>
       {props.postList.map((post) =>
         <Post
           title={post.title}
@@ -14,14 +15,16 @@ function PostList(props) {
           showPostDetail={post.showPostDetail}
           postDetail={post.postDetail}
           upVotes={post.upVotes}
-          downVotes={post.downVotes} />
+          downVotes={post.downVotes}
+          showEdit={props.showEdit} />
       )}
     </React.Fragment>
   )
 }
 
 PostList.propTypes = {
-  postList: PropTypes.object,
+  postList: PropTypes.array,
+  onAddPostClick: PropTypes.func
 }
 
 export default PostList;
