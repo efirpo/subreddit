@@ -11,7 +11,7 @@ function AddPostForm(props) {
 
     // Tue Jul 07 2020 14:38:07 GMT-0700 (Pacific Daylight Time)
     props.onPostCreation({
-      title: event.target.title.value, id: v4(), image: event.target.image.value, showPostDetail: false, postDetail: { description: event.target.description.value, date: rightNow, replyList: {} }
+      title: event.target.title.value, id: v4(), image: event.target.image.value, showPostDetail: false, postDetail: { description: event.target.description.value, date: rightNow, replyList: {} }, upVotes: 0, downVotes: 0
     })
   }
   return (

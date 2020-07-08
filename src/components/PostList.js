@@ -6,17 +6,16 @@ function PostList(props) {
 
   return (
     <React.Fragment>
-      {Object.values(props.postList).map((post) => {
-        return <Post
+      {props.postList.map((post) =>
+        <Post
           title={post.title}
           id={post.id}
           image={post.image}
           showPostDetail={post.showPostDetail}
           postDetail={post.postDetail}
           upVotes={post.upVotes}
-          downVotes={post.downVotes}
-        />
-      })}
+          downVotes={post.downVotes} />
+      )}
     </React.Fragment>
   )
 }

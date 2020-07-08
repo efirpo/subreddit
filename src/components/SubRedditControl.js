@@ -46,8 +46,23 @@ SubRedditControl.propTypes = {
   showEdit: PropTypes.bool
 }
 const mapStateToProps = state => {
+  const postListArr = Object.entries(state.postList).map(e => (e[1]));
+  const orderedListArr = postListArr.sort(function (a, b) {
+    const postScoreA = (a.upVotes - a.downVotes)
+    const postScoreB = (b.upVotes - b.downVotes)
+    if (postScoreA > postScoreB) {
+      return -1
+    }
+    if (postScoreA < postScoreB) {
+      return 1
+    }
+    return 0
+
+  })
+  console.table(orderedListArr)
+  // console.table(postListArr);
   return {
-    postList: state.postList,
+    postList: orderedListArr,
     showForm: state.showForm,
     showEdit: state.showEdit
   }
