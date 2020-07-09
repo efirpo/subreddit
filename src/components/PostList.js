@@ -2,17 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Post from './Post';
 
-const randomColor = () => {
-  return Math.floor(Math.random() * 167).toString(16);
-}
-
-const postParentStyles = {
-  display: "flex",
-  flexFlow: "column nowrap",
-  border: "1px solid darkgray",
-  margin: "0 auto",
-}
-
 const addButtonStyles = {
   fontSize: "2.5vh",
   border: "1px solid darkGray",
@@ -30,6 +19,15 @@ const addButtonStyles = {
 
 function PostList(props) {
 
+  const postParentStyles = {
+    display: "flex",
+    flexFlow: "column nowrap",
+    border: "1px solid darkgray",
+    margin: "0 auto",
+    backgroundColor: props.bgColor
+  }
+  console.log("PROPS.BGCOLOR:  " + props.bgColor)
+
   return (
     <React.Fragment>
       <button style={addButtonStyles} onClick={() => props.onAddPostClick()}>Add Post</button><br />
@@ -46,7 +44,7 @@ function PostList(props) {
             downVotes={post.downVotes}
             showEdit={post.showEdit}
             showFullImg={post.showFullImg}
-            bgColor={randomColor()} />
+            bgColor={post.bgColor} />
         </div>
       )}
     </React.Fragment>
