@@ -11,13 +11,24 @@ const bodyStyles = {
 }
 function SubRedditControl(props) {
 
-  function handleAdddingReply(newReply) {
-    alert("pew pew");
+  function handleAddingReply(newReply) {
+    const { dispatch } = props;
+    const { comment, postId, id, postDetail, date, replyList } = newReply;
+    const action = {
+      type: 'ADD_REPLY',
+      postId: postId,
+      id: id,
+      comment: comment,
+      postDetail: postDetail,
+      date: date
+    }
+    dispatch(action)
+
   }
 
   function handleAddingNewPost(newPost) {
     const { dispatch } = props;
-    const { title, id, image, showPostDetail, postDetail, upVotes, downVotes, showEdit, showFullImg } = newPost;
+    const { title, id, image, showPostDetail, postDetail, upVotes, downVotes, showEdit, showFullImg, bgColor } = newPost;
     const action = {
       type: 'ADD_POST',
       title: title,
@@ -28,7 +39,8 @@ function SubRedditControl(props) {
       upVotes: upVotes,
       downVotes: downVotes,
       showEdit: showEdit,
-      showFullImg: showFullImg
+      showFullImg: showFullImg,
+      bgColor: bgColor
     }
     dispatch(action);
     const action2 = {
@@ -47,11 +59,11 @@ function SubRedditControl(props) {
 
   let visibleState;
   if (props.showForm) {
-    visibleState = <AddPostPage onPostCreation={handleAddingNewPost} />
+    visibleState = <AddPostPage onGoBackClick={handleClickingAddToPost} onPostCreation={handleAddingNewPost} />
   } else if (props.showEdit) {
     visibleState = <EditPostPage post={props.selectedPost} />
   } else {
-    visibleState = <PostList postList={props.postList} onAddReply={handleAdddingReply} onAddPostClick={handleClickingAddToPost} />
+    visibleState = <PostList postList={props.postList} onAddReply={handleAddingReply} onAddPostClick={handleClickingAddToPost} />
   }
 
   return (

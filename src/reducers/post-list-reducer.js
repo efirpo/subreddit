@@ -1,6 +1,6 @@
 export default (state = {}, action) => {
 
-  const { title, id, image, showPostDetail, postDetail, upVotes, downVotes, showEdit, showFullImg } = action;
+  const { title, id, image, showPostDetail, postDetail, upVotes, downVotes, showEdit, showFullImg, comment, postId, date, replyList, bgColor } = action;
   switch (action.type) {
     case 'ADD_POST':
       return Object.assign({}, state, {
@@ -13,7 +13,8 @@ export default (state = {}, action) => {
           upVotes: upVotes,
           downVotes: downVotes,
           showEdit: showEdit,
-          showFullImg: showFullImg
+          showFullImg: showFullImg,
+          bgColor: bgColor
         }
       });
     case 'TOGGLE_DETAILS':
@@ -36,6 +37,24 @@ export default (state = {}, action) => {
         [id]: {
           ...state[id],
           showFullImg: showFullImg
+        }
+      })
+    case 'ADD_REPLY':
+      return Object.assign({}, state, {
+        [postId]:
+        {
+          ...state[postId],
+          postDetail: {
+            ...postDetail,
+            replyList: {
+              ...postDetail.replyList,
+              [id]: {
+                id: id,
+                comment: comment,
+                date: date
+              }
+            }
+          }
         }
       })
 

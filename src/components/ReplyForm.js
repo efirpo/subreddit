@@ -1,10 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { v4 } from 'uuid';
 
 function ReplyForm(props) {
+
   function handleNewReply(event) {
     event.preventDefault();
-    props.replyHandler();
+    const rightNow = new Date().toString()
+    props.replyHandler({ comment: event.target.comment.value, postId: props.id, id: v4(), date: rightNow, postDetail: props.postDetail });
   }
 
   return (
@@ -20,7 +23,9 @@ function ReplyForm(props) {
 }
 
 ReplyForm.propTypes = {
-  replyHandler: PropTypes.func
+  replyHandler: PropTypes.func,
+  id: PropTypes.string,
+  postDetail: PropTypes.object,
 }
 
 export default ReplyForm;

@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import PostDetail from './PostDetail';
 
-const fullPostStyles = {
-  backgroundColor: "#f39d" + props.bgColor
-}
+
 const postBodyStyles = {
   display: "flex",
   flexFlow: "row nowrap",
@@ -24,6 +22,9 @@ const imgParentStyles = {
 
 
 function Post(props) {
+  const fullPostStyles = {
+    backgroundColor: props.bgColor
+  }
   function handleVotingUp() {
     const { dispatch } = props;
     const action = {
@@ -77,7 +78,7 @@ function Post(props) {
   }
   let postDetails;
   if (props.showPostDetail) {
-    postDetails = <PostDetail postDetail={props.postDetail} onAddReply={props.onAddReply} />
+    postDetails = <PostDetail postDetail={props.postDetail} onAddReply={props.onAddReply} id={props.id} />
   }
 
   const voteDifference = props.upVotes - props.downVotes
